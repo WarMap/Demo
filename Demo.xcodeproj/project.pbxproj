@@ -13,6 +13,9 @@
 		4A6460B81F97854C00232CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6460B71F97854C00232CB5 /* Assets.xcassets */; };
 		4A6460BB1F97854C00232CB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6460B91F97854C00232CB5 /* LaunchScreen.storyboard */; };
 		4A6460BE1F97854C00232CB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6460BD1F97854C00232CB5 /* main.m */; };
+		4A6460C71F9792BB00232CB5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6460C61F9792BB00232CB5 /* NSString+Util.m */; };
+		4A6460CA1F97995100232CB5 /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6460C91F97995100232CB5 /* UIView+Util.m */; };
+		4A6460CE1F979D2B00232CB5 /* NSObject+DeallocBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6460CD1F979D2B00232CB5 /* NSObject+DeallocBlock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,12 @@
 		4A6460BA1F97854C00232CB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A6460BC1F97854C00232CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A6460BD1F97854C00232CB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4A6460C51F9792BB00232CB5 /* NSString+Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		4A6460C61F9792BB00232CB5 /* NSString+Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		4A6460C81F97995100232CB5 /* UIView+Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Util.h"; sourceTree = "<group>"; };
+		4A6460C91F97995100232CB5 /* UIView+Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Util.m"; sourceTree = "<group>"; };
+		4A6460CC1F979D2A00232CB5 /* NSObject+DeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeallocBlock.h"; sourceTree = "<group>"; };
+		4A6460CD1F979D2B00232CB5 /* NSObject+DeallocBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeallocBlock.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 		4A6460AD1F97854C00232CB5 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4A6460CB1F979CF900232CB5 /* Catecory */,
 				4A6460AE1F97854C00232CB5 /* AppDelegate.h */,
 				4A6460AF1F97854C00232CB5 /* AppDelegate.m */,
 				4A6460B11F97854C00232CB5 /* ViewController.h */,
@@ -69,6 +79,19 @@
 				4A6460BD1F97854C00232CB5 /* main.m */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		4A6460CB1F979CF900232CB5 /* Catecory */ = {
+			isa = PBXGroup;
+			children = (
+				4A6460CC1F979D2A00232CB5 /* NSObject+DeallocBlock.h */,
+				4A6460CD1F979D2B00232CB5 /* NSObject+DeallocBlock.m */,
+				4A6460C51F9792BB00232CB5 /* NSString+Util.h */,
+				4A6460C61F9792BB00232CB5 /* NSString+Util.m */,
+				4A6460C81F97995100232CB5 /* UIView+Util.h */,
+				4A6460C91F97995100232CB5 /* UIView+Util.m */,
+			);
+			path = Catecory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +165,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6460CE1F979D2B00232CB5 /* NSObject+DeallocBlock.m in Sources */,
+				4A6460CA1F97995100232CB5 /* UIView+Util.m in Sources */,
 				4A6460B31F97854C00232CB5 /* ViewController.m in Sources */,
 				4A6460BE1F97854C00232CB5 /* main.m in Sources */,
 				4A6460B01F97854C00232CB5 /* AppDelegate.m in Sources */,
+				4A6460C71F9792BB00232CB5 /* NSString+Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
