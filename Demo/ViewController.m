@@ -61,7 +61,7 @@
 }
 
 - (void)endFetch {
-    if (!self.thread.isCancelled) {
+    if (self.thread && !self.thread.isCancelled) {
         [self performSelector:@selector(stopThread) onThread:self.thread withObject:nil waitUntilDone:YES];
         [self.timer invalidate];
         self.timer = nil;
