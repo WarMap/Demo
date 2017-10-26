@@ -11,4 +11,8 @@
 @interface NSObject (DeallocBlock)
 
 -(void)runAtDealloc:(dispatch_block_t)block;
+
+// 添加一个监听者
+- (void)addObserverForRunloop;
+
 @end

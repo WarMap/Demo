@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSThread *thread;
 @property (nonatomic, assign) BOOL requestIsFlying;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (nonatomic, strong) NSPort *myPort;
 
 @end
 
@@ -27,7 +28,7 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self timerFire];  //拉取一次数据
+//    [self timerFire];  //拉取一次数据
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,18 +80,40 @@
         NSLog(@"thread dealloc");
     }];
     [self.thread start];
+    //第三种方式启动NSRunloop的话，解注下面这句话。会结束NSRunloop的执行。
+//    [self performSelector:@selector(printSomething) onThread:self.thread withObject:nil waitUntilDone:YES];
 }
 
 - (void)singleThreadMethod {
     @autoreleasepool {
+        [self addObserverForRunloop];
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         if (self.timer) {
             [self.timer invalidate];
             self.timer = nil;
         }
+        [[NSRunLoop currentRunLoop] currentMode];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFire) userInfo:nil repeats:YES];
-        [runLoop addTimer:self.timer forMode:NSRunLoopCommonModes];
-        [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        [runLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        NSLog(@"thread alloced");
+        /*
+         NSRunloop的启动方式
+         1.    - (void)run;
+         2.    - (void)runUntilDate:(NSDate *)limitDate;
+         3.    - (BOOL)runMode:(NSRunLoopMode)mode beforeDate:(NSDate *)limitDate;
+         第一种和第二种均是多次调用第三种。而第三种runloop只会跑一次
+         官方说明：YES if the run loop ran and processed an input source or if the specified timeout value was reached; otherwise, NO if the run loop could not be started.
+         也就是说这个loop执行完一个input source或者到达时限就会返回。即不再loop
+         只在runloop中跑timer是可以使用第三种的，因为loop会一直处理timer事件然后休眠，再处理timer事件，再休眠。。。。。。。也不会返回。
+         */
+        BOOL flag = [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        /*
+         用下面这种方式启动也可以
+         CFRunLoopRun();
+         注意：下面这句话只会结束当前的 runMode:beforeDate: 调用，而不会结束后续的调用。
+         CFRunLoopStop(CFRunLoopGetCurrent());
+         */
+        NSLog(@"runloop return %@", @(flag));
     }
 }
 
