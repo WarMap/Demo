@@ -27,6 +27,7 @@
     BinaryTree *tree = [BinaryTree new];
     [tree createTree];
     [tree depathOfTree];
+    [tree invertTree];
 }
 
 - (void)testQuickSort {

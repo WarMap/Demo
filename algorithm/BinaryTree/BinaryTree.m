@@ -37,21 +37,24 @@ typedef struct TreeNode{
 @implementation BinaryTree {
     Node *_rootNode;
 }
-
+#pragma mark -
+#pragma mark - public methods
 /**
  创建二叉排序树
                    20
              15          22
-          13    16    21    26
+          13    16    21     26
+                                111
  */
 - (void)createTree {
     _rootNode = [[Node alloc] initWithValue:20];
     Node *node15 = [[Node alloc] initWithValue:15];
-    Node *node13 = [[Node alloc] initWithValue:15];
-    Node *node16 = [[Node alloc] initWithValue:15];
-    Node *node22 = [[Node alloc] initWithValue:15];
-    Node *node21 = [[Node alloc] initWithValue:15];
-    Node *node26 = [[Node alloc] initWithValue:15];
+    Node *node13 = [[Node alloc] initWithValue:13];
+    Node *node16 = [[Node alloc] initWithValue:16];
+    Node *node22 = [[Node alloc] initWithValue:22];
+    Node *node21 = [[Node alloc] initWithValue:21];
+    Node *node26 = [[Node alloc] initWithValue:26];
+    Node *node111 = [[Node alloc] initWithValue:111];
     
     _rootNode.leftNode = node15;
     node15.leftNode = node13;
@@ -59,12 +62,20 @@ typedef struct TreeNode{
     _rootNode.rightNode = node22;
     node22.leftNode = node21;
     node22.rightNode = node26;
+    node26.rightNode = node111;
 }
 
 - (void)depathOfTree {
     NSLog(@"二叉树的深度为  %ld",[self depthWithRootNode:_rootNode]);
 }
 
+- (void)invertTree {
+    [self invertBinaryTree:_rootNode];
+    NSLog(@"%@", _rootNode);
+}
+
+#pragma mark -
+#pragma mark - private methods
 - (NSInteger)depthWithRootNode:(Node *)rootNode {
     if (!rootNode) {
         return 0;
@@ -77,9 +88,21 @@ typedef struct TreeNode{
     return MAX(leftDepth, rightDepth) + 1;
 }
 
-- (void)invertTree {
-    
+- (Node *)invertBinaryTree:(Node *)rootNode {
+    if (!rootNode) {
+        return nil;
+    }
+    if (!rootNode.rightNode && !rootNode.leftNode) {
+        return rootNode;
+    }
+    Node *left = rootNode.leftNode;
+    rootNode.leftNode = rootNode.rightNode;
+    rootNode.rightNode = left;
+    [self invertBinaryTree:rootNode.leftNode];
+    [self invertBinaryTree:rootNode.rightNode];
+    return rootNode;
 }
+
 
 
 @end
