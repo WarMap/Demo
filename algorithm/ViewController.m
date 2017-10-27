@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "BinaryTree.h"
 
 @interface ViewController ()
 
@@ -19,7 +20,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self testQuickSort];
+    [self testBinaryTree];
+}
+
+- (void)testBinaryTree {
+    BinaryTree *tree = [BinaryTree new];
+    [tree createTree];
+    [tree depathOfTree];
 }
 
 - (void)testQuickSort {
@@ -56,6 +63,7 @@
     array[end] = @(temp);
     return (i + 1);
 }
+
 - (void)testBinarySearch {
     NSArray *numberArray = @[@1, @3, @27, @36, @42, @70, @82];
     NSInteger index = [self binarySearch:numberArray key:70];
