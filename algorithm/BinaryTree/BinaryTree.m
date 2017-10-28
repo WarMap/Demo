@@ -89,6 +89,10 @@ typedef struct TreeNode{
     NSLog(@"%@", _rootNode);
 }
 
+- (void)breadthFirstSearch {
+    [self breadthFirstSearch:_rootNode];
+}
+
 #pragma mark -
 #pragma mark - private methods
 - (NSInteger)depthWithRootNode:(Node *)rootNode {
@@ -170,6 +174,24 @@ typedef struct TreeNode{
     return NO;
 }
 
+- (void)breadthFirstSearch:(Node *)rootNode {
+    if (!rootNode) {
+        return;
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:rootNode];
+    while (array.count > 0) {
+        Node *node = array.firstObject;
+        NSLog(@"bfs node's value is %ld", node.value);
+        [array removeObjectAtIndex:0];
+        if (node.leftNode) {
+            [array addObject:node.leftNode];
+        }
+        if (node.rightNode) {
+            [array addObject:node.rightNode];
+        }
+    }
+}
 
 - (BOOL)printNodeValue:(Node *)node {
     if (node) {

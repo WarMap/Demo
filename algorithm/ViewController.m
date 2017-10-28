@@ -31,6 +31,7 @@
     [tree preOrderTree];
     [tree inOrderTree];
     [tree postOrderTree];
+    [tree breadthFirstSearch];
 }
 
 - (void)testQuickSort {
