@@ -74,6 +74,21 @@ typedef struct TreeNode{
     NSLog(@"%@", _rootNode);
 }
 
+- (void)preOrderTree {
+    [self preOrderTraverse:_rootNode];
+    NSLog(@"%@", _rootNode);
+}
+
+- (void)inOrderTree {
+    [self inOrderTraverse:_rootNode];
+    NSLog(@"%@", _rootNode);
+}
+
+- (void)postOrderTree {
+    [self postOrderTraverse:_rootNode];
+    NSLog(@"%@", _rootNode);
+}
+
 #pragma mark -
 #pragma mark - private methods
 - (NSInteger)depthWithRootNode:(Node *)rootNode {
@@ -103,6 +118,65 @@ typedef struct TreeNode{
     return rootNode;
 }
 
+/**
+ 先序遍历（递归方式）
 
+ @param rootNode <#rootNode description#>
+ @return <#return value description#>
+ */
+- (BOOL)preOrderTraverse:(Node *)rootNode {
+    if ([self printNodeValue:rootNode]) {
+        if ([self preOrderTraverse:rootNode.leftNode]) {
+            if ([self preOrderTraverse:rootNode.rightNode]) {
+                return YES;
+            }
+        }
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)inOrderTraverse:(Node *)rootNode {
+    if (rootNode) {
+        if ([self inOrderTraverse:rootNode.leftNode]) {
+            if ([self printNodeValue:rootNode]) {
+                if ([self inOrderTraverse:rootNode.rightNode]) {
+                    return YES;
+                }
+            }
+            return NO;
+        } else {
+            return YES;
+        }
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)postOrderTraverse:(Node *)rootNode {
+    if (rootNode) {
+        if ([self postOrderTraverse:rootNode.rightNode]) {
+            if ([self postOrderTraverse:rootNode.leftNode]) {
+                if ([self printNodeValue:rootNode]) {
+                    return YES;
+                }
+            }
+        }
+        return NO;
+    } else {
+        return YES;
+    }
+    return NO;
+}
+
+
+- (BOOL)printNodeValue:(Node *)node {
+    if (node) {
+        NSLog(@"node's value is %ld", node.value);
+        return YES;
+    }
+    return NO;
+}
 
 @end

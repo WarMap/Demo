@@ -13,5 +13,9 @@
 - (void)createTree;
 - (void)depathOfTree;
 - (void)invertTree;
+- (void)preOrderTree;
+- (void)inOrderTree;
+- (void)postOrderTree;
+
 
 @end
