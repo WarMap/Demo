@@ -20,7 +20,8 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self testBinaryTree];
+//    [self testBinaryTree];
+    [self han:5 aString:@"a" bString:@"b" cString:@"c"];
 }
 
 - (void)testBinaryTree {
@@ -75,6 +76,15 @@
     NSLog(@"70 位于第%ld个数", index);
 }
 
+- (void)han:(NSUInteger)n aString:(NSString *)aStr bString:(NSString *)bStr cString:(NSString *)cStr {
+    if (n == 1) {
+        NSLog(@"%@----->%@", aStr, cStr);
+        return;
+    }
+    [self han:n-1 aString:aStr bString:cStr cString:bStr];
+    [self han:1 aString:aStr bString:bStr cString:cStr];
+    [self han:n-1 aString:bStr bString:aStr cString:cStr];
+}
 /**
  二分查找，while形式
 
