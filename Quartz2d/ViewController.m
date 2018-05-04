@@ -25,7 +25,6 @@ static CGFloat bigBubbleWidth = 160;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     [self customSubview];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)customSubview {
