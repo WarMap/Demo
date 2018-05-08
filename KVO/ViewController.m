@@ -25,7 +25,6 @@
         NSLog(@"\n observedObject is %@\n observedKey is %@\n oldValue is %@\n newValue is %@", observedObject, observedKey, oldValue, newValue);
     }];
     [self addObserver:self forKeyPath:@"date" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
