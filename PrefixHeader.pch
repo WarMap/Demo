@@ -1,0 +1,42 @@
+//
+//  PrefixHeader.pch
+//  Demo
+//
+//  Created by warmap on 2019/1/14.
+//  Copyright © 2019 warmap. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef DEBUG
+// 打印函数名
+#define MPLogFunction printf("mp>>>>>>>>>>  %s\n", __func__)
+// 打印retaincount
+#define referenceCount(temp) printf("mp>>>>>>>>>>rc is %ld\n", CFGetRetainCount((__bridge CFTypeRef)temp));
+
+
+
+#define MPLog(FORMAT, ...) {\
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
+[dateFormatter setDateStyle:NSDateFormatterMediumStyle];\
+[dateFormatter setTimeStyle:NSDateFormatterShortStyle];\
+[dateFormatter setDateFormat:@"HH:mm:ss:SS"]; \
+NSString *str = [dateFormatter stringFromDate:[NSDate date]];\
+printf("%s mp>>> %s \nmp>> %s:%d\n",[str UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String],[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__);\
+};
+//#define MPLog(fmt, ...) NSLog((@"mp>>>\n[文件名:%s]\n" "[函数名:%s]\n" "[行号:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+
+#define MPLog(...);
+#define MPLogFunction;
+#define referenceCount(temp);
+
+#endif
+
+
+
+#endif /* PrefixHeader_pch */
