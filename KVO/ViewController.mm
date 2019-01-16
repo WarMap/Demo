@@ -10,11 +10,13 @@
 #import "MPPerson.h"
 #import "NSObject+MPKVO.h"
 #import "MJClassInfo.h"
+#import "MPSomeClass.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) MPPerson *person1;
 @property (nonatomic, strong) MPPerson *person2;
+@property (nonatomic, strong) MPSomeClass *someClass;
 //@property (nonatomic, strong) NSDate *date;
 @end
 
@@ -22,6 +24,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ self.someClass= [[MPSomeClass alloc] init];
+    
+    [self testKVC];
+}
+
+- (void)testKVC {
+    [self.someClass addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
+    [self.someClass setValue:@10 forKey:@"age"];
+    [self.someClass removeObserver:self forKeyPath:@"age"];
+}
+- (void)testKVO {
     self.person1 = [[MPPerson alloc] init];
     self.person2 = [[MPPerson alloc] init];
     
@@ -34,7 +47,6 @@
     mj_objc_class *cls = (__bridge mj_objc_class *)[self.person1 class];
     mj_objc_class *meta = cls->metaClass();
     printf("");
-//    [self test];
 }
 
 - (void)test {
@@ -46,7 +58,8 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    self.person1.name = [NSString stringWithFormat:@"killer%d", (arc4random() % 100)];
+    [self testKVC];
+//    self.person1.name = [NSString stringWithFormat:@"killer%d", (arc4random() % 100)];
 //    NSLog(@"1");
 //    [self willChangeValueForKey:@"date"]; // “手动触发self.now的KVO”，必写。
 //    NSLog(@"2");
